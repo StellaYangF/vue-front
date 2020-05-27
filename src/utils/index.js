@@ -1,7 +1,8 @@
 import axios from './request';
-import { getLocal } from './local.js';
+import { getLocal, setLocal } from './local.js';
 
 export {
   axios,
   getLocal,
+  setLocal,
 }

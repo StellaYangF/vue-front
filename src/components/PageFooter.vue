@@ -1,5 +1,11 @@
 <template>
-  <el-row>
-    <el-col :span='10' :offset="7">底部授权栏</el-col>
-  </el-row>
+  <div class='footer'>底部授权栏</div>
 </template>
+
+<style lang="scss" scoped>
+  .footer {
+    line-height: 60px;
+    text-align: center;
+  }
+</style>
+

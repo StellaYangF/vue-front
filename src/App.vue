@@ -4,7 +4,9 @@
       <el-header>
         <page-header></page-header>
       </el-header>
-      <el-main style='padding:0'></el-main>
+      <el-main style='padding:0'>
+        <router-view></router-view>
+      </el-main>
       <el-footer>
         <page-footer></page-footer>
       </el-footer>

@@ -8,7 +8,7 @@
         background-color="#333"
         text-color="#fff"
         active-text-color="#fff"
-        :rooter='true'
+        :router='true'
       >
         <el-menu-item index='/'>Home</el-menu-item>
         <el-menu-item index='/post'>Post</el-menu-item>
@@ -22,12 +22,13 @@
           background-color="#333"
           text-color="#fff"
           active-text-color="#fff"
+          :router='true'
         >
           <template v-if='!hasPermisson'>
             <el-menu-item index='login'>Login</el-menu-item>
             <el-menu-item index='reg'>Register</el-menu-item>
           </template>
-          <el-submenu index='profile'>
+          <el-submenu index='profile' v-else>
             <template slot='title'>{{ userInfo.username }}</template>
             <el-menu-item @click='$router.push("/manager")'>Manage backend</el-menu-item>
             <el-menu-item index='logout' @click='logout'>Logout</el-menu-item>
@@ -71,6 +72,9 @@ export default {
     }
     .menu, .logo {
       display: inline-block;
+    }
+    .el-menu-item {
+      border-bottom: 0 !important;
     }
     .nav-right {
       float: right;
