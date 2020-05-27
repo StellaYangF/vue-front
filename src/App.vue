@@ -1,10 +1,10 @@
 <template>
   <div id='app'>
-    <el-container>
+    <el-container style='min-width: 960px'>
       <el-header>
         <page-header></page-header>
       </el-header>
-      <el-main></el-main>
+      <el-main style='padding:0'></el-main>
       <el-footer>
         <page-footer></page-footer>
       </el-footer>
@@ -23,3 +23,17 @@ export default {
   }
 }
 </script>
+
+<style>
+* {
+  padding: 0;
+  margin: 0;
+}
+.el-header, .el-footer {
+  background: #333;
+  color: #fff;
+}
+.el-main {
+  min-height: calc(100vh - 120px);
+}
+</style>
