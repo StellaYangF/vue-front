@@ -1,16 +1,15 @@
 import store from '@/store';
 import {
   USER_VALIDATE,
-} from '@/views/action-types';
+} from '@/store/action-types';
 
 // 登录权限
 export const loginPermission = async function(to, from, next) {
-  let r = await store.dispatch(`/user/${USER_VALIDATE}`);
+  let validated = await store.dispatch(`user/${USER_VALIDATE}`);
   let needLogin = to.matched.some(item => item.meta.needLogin);
-
   if (!store.state.user.hasPermission) {
     if (needLogin) {
-      if (r) {
+      if (validated) {
         next();
       } else {
         next('/login');
@@ -25,7 +24,6 @@ export const loginPermission = async function(to, from, next) {
       next();
     }
   }
-  next();
 }
 
 // 路由权限
@@ -33,5 +31,6 @@ export const menuPermission = async function(to, from ,next) {
   if (store.state.user.hasPermission) {
     
   }
+  next();
 }
 

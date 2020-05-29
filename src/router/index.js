@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import * as hooks from './hooks';
 
 Vue.use(VueRouter);
 
@@ -14,5 +15,10 @@ const router  = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+
+// register hooks
+Object.values(hooks).forEach(hook => {
+  router.beforeEach(hook.bind(router));
+})
 
 export default router;

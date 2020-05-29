@@ -1,15 +1,17 @@
 <template>
-  <div class='card'> </div>
+  <div class='skeleton-container'>
+    <div class='card'> </div>
+  </div>
 </template>
 
-<style lang="scss" scoped>
+<style lang="scss">
   /*
  * Variables
  */
 
 :root {  
   --card-padding: 24px;
-  --card-height: 340px;
+  --card-height: calc(100vh - 150px);
   --card-skeleton: linear-gradient(lightgrey var(--card-height), transparent 0);
   
   --avatar-size: 32px;
@@ -42,7 +44,7 @@
  */
 
 .card {
-  width: 280px; //demo
+  width: 70%; //demo
   height: var(--card-height);
   
   &:empty::after {
@@ -112,8 +114,8 @@
  * Demo Stuff
  */
 
-.el-main {
-  min-height:100vh;
+.skeleton-container {
+  margin: 10px auto;
   background-color:#FFF;
   display:flex;
   justify-content:center;

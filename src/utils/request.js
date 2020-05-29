@@ -64,11 +64,11 @@ class HttpRequest {
     });
   }
 
-  post(url, config) {
+  post(url, data) {
     return this.request({
       method: "post",
       url,
-      ...config,
+      data,
     });
   }
 }

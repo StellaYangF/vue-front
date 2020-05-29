@@ -44,3 +44,5 @@ const components = {
 };
 
 Object.values(components).forEach((component) => Vue.use(component));
+
+Vue.prototype.$message = Message;

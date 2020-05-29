@@ -1,5 +1,5 @@
 import {
-  SET_USER, SET_PERMISSION, SET_MENU_PERMISSION, USER_VALIDATE, USER_LOGOUT, ADD_ROUTE,
+  SET_USER, SET_PERMISSION, SET_MENU_PERMISSION, USER_VALIDATE, USER_LOGOUT, ADD_ROUTE, USER_LOGIN,
 } from '../action-types';
 import { getLocal, setLocal } from '@/utils';
 import * as user from '@/api/user';
@@ -35,11 +35,23 @@ export default {
       commit(SET_USER, payload);
       commit(SET_PERMISSION, permission);
     },
+    async [USER_LOGIN]({ dispatch }, payload) {
+      try {
+        let result = await user.login(payload);
+        dispatch(SET_USER, { payload: result.data, permission: true });
+      } catch(e) {
+        return Promise.reject(e);
+      }
+    },
     async [USER_VALIDATE]({ dispatch }) {
       if (!getLocal('token')) return false;
       try {
         let result = await user.validate();
-      } catch(e) {}
+        dispatch(SET_USER, { payload: result.data, permission: true });
+      } catch(e) {
+        dispatch(SET_USER, { payload: {}, permission: false });
+        return false;
+      }
     },
     async [USER_LOGOUT]({ dispatch }) {
       dispatch(SET_USER, { payload: {}, permission: false });
