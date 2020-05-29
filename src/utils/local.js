@@ -1,9 +1,10 @@
 const getLocal = (key) => {
   let value = localStorage.getItem(key) || '';
+  console.log(localStorage.getItem(key));
   if (value.includes('[') || value.includes('{')) {
     return value =  JSON.parse(value);
   }
-  return localStorage.getItem(key) || '';
+  return value;
 };
 
 const setLocal = (key, value) => {

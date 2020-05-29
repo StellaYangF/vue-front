@@ -1,6 +1,7 @@
 import store from '@/store';
 import {
   USER_VALIDATE,
+  ADD_ROUTE
 } from '@/store/action-types';
 
 // 登录权限
@@ -14,10 +15,11 @@ export const loginPermission = async function(to, from, next) {
       } else {
         next('/login');
       }
-    } else {
+    } else { // 没登录 也不用权限
       next();
     }
   } else {
+    // 登录过
     if (to.path === '/login') {
       next('/');
     } else {
@@ -28,9 +30,13 @@ export const loginPermission = async function(to, from, next) {
 
 // 路由权限
 export const menuPermission = async function(to, from ,next) {
-  if (store.state.user.hasPermission) {
-    
+  if (store.state.user.hasPermission) { // 登陆过
+    if (!store.state.user.menuPermission) { // 没有菜单权限
+      store.dispatch(`user/${ADD_ROUTE}`)
+    }
+  } else {
+    // 没有权限
+    next();
   }
-  next();
 }
 

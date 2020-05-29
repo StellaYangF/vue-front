@@ -11,6 +11,7 @@ class HttpRequest {
   setInterceptors(instance) {
     // 请求拦截
     instance.interceptors.request.use((config) => {
+      console.log(getLocal("token"));
       // jwt
       config.headers.authorization = `Bear ${getLocal("token")}`;
       return config;
