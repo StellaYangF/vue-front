@@ -1,8 +1,8 @@
 import Vue from 'vue';
 import router from './router';
 import App from './App';
-import './plugins/element';
 import store from './store';
+import './plugins/element';
 
 new Vue({
   el: '#app',
