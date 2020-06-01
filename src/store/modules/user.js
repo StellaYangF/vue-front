@@ -57,6 +57,7 @@ export default {
       dispatch(SET_USER, { payload: {}, permission: false });
     },
     async [ADD_ROUTE]({ commit, state }) {
+      debugger;
       let authList = state.userInfo.authList;
       if (authList) {
         let routes = filterRouter(authList);
