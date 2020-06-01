@@ -6,6 +6,21 @@ import * as user from '@/api/user';
 import router from '@/router';
 import per from '@/router/per.js';
 
+const filterRouter = authList => {
+  let auths = authList.map(auth => auth.auth);
+  function filter(routes) {
+    return routes.filter(route => {
+      if (auths.includes(route.meta.auth)) {
+        if (route.children) {
+          route.children = filter(route.children);
+        }
+        return route;
+      }
+    })
+  }
+  return filter(per);
+}
+
 export default {
   state: {
     userInfo: {},
