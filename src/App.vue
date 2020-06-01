@@ -38,4 +38,8 @@ export default {
 .el-main {
   min-height: calc(100vh - 120px);
 }
+.title {
+  text-align: center;
+  margin: 10px auto 30px;
+}
 </style>

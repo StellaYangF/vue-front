@@ -100,7 +100,8 @@ export default {
         if (valid) {
           try {
             await this[USER_LOGIN]({ ...this.loginForm, uid: this.uid});
-            this.$message({ type: 'success', message: '登陆成功' })
+            this.$message({ type: 'success', message: '登陆成功' });
+            this.$router.push('/');
           } catch(e) {
             this.$message({ type: 'error', message: e });
           }
@@ -124,10 +125,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-  .title {
-    text-align: center;
-    margin: 10px auto 30px;
-  }
-</style>
